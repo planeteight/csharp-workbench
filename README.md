@@ -1,39 +1,40 @@
-# ai-dev-template
+# C# Workbench
 
-Template for development with Claude AI coding assistants.
+C# Workbench is a hands-on learning repository for C# and .NET. It contains a small runnable example, seven guided console exercises, and a separate SQLite/Entity Framework Core exercise.
 
-## What this template includes
+## Prerequisites
 
-- A fully configured VS Code Dev Container.
-- Claude project guidance in `CLAUDE.md`.
-- Shared assistant rules in `AGENTS.md` and `.clinerules`.
-- Editor defaults and recommended extensions.
-- Bootstrap and environment health-check scripts.
+- The .NET 8 SDK or later. Install it from [dotnet.microsoft.com/download](https://dotnet.microsoft.com/download), then verify the installation with `dotnet --version`.
+- Visual Studio Code is optional. The workspace recommends Microsoft's **C# Dev Kit** (`ms-dotnettools.csdevkit`) and **C#** (`ms-dotnettools.csharp`) extensions for IntelliSense, project support, and debugging.
 
 ## Quick start
 
-1. Install Docker Desktop.
-2. Open this folder in VS Code.
-3. Run: `Dev Containers: Reopen in Container`.
-4. Wait for post-create setup to finish.
-5. Run the `Doctor: verify dev environment` task.
+From the repository root, run the introductory example:
 
-## Files
+```sh
+dotnet run --project examples/HelloWorld/HelloWorld.csproj
+```
 
-- `.devcontainer/devcontainer.json`: Dev Container definition.
-- `.devcontainer/Dockerfile`: Container image build.
-- `.devcontainer/post-create.sh`: One-time setup on container creation.
-- `.vscode/settings.json`: Workspace editor defaults.
-- `.vscode/extensions.json`: Recommended extensions.
-- `.vscode/tasks.json`: Bootstrap and doctor tasks.
-- `CLAUDE.md`: Claude coding assistant project instructions.
-- `AGENTS.md`: Cross-assistant behavior and workflow rules.
-- `.clinerules`: Cline-compatible project rules.
-- `scripts/bootstrap.sh`: Project bootstrap script.
-- `scripts/doctor.sh`: Environment validation script.
+Build the exercise runner and run a module from 01 through 07:
 
-## Notes
+```sh
+dotnet build exercises/Exercises.csproj
+dotnet run --project exercises/Exercises.csproj -- 01
+```
 
-- This template is language-agnostic and auto-detects common project manifests.
-- If a `package.json`, `requirements.txt`, `pyproject.toml`, or `pre-commit-config.yaml` exists, setup scripts will install related dependencies.
+Change `01` to another module number to run a different exercise. Each module's `README.md` describes the learning goals, assignment, and suggested test cases. See [the exercise guide](exercises/README.md) for the module list and more run commands.
 
+Module 08 is a separate project because it uses Entity Framework Core and SQLite:
+
+```sh
+dotnet run --project exercises/08-sqlite-efcore/SqliteExercise.csproj
+```
+
+It creates `study-notes.db` in the current working directory. The database is a local exercise artifact and should not be used to store sensitive information.
+
+## Repository layout
+
+- `examples/HelloWorld/`: A standalone console example introducing C# syntax.
+- `exercises/`: Module briefs and starter code for variables, control flow, methods, classes, collections, namespaces, project references, and SQLite persistence.
+- `.devcontainer/`: Optional VS Code development-container configuration.
+- `scripts/`: Bootstrap and environment-check scripts.

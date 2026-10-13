@@ -25,3 +25,12 @@ if [[ -f .pre-commit-config.yaml ]]; then
 fi
 
 echo "[bootstrap] done"
+
+# --- added: check for dotnet SDK ---
+if ! command -v dotnet >/dev/null 2>&1; then
+  echo "WARNING: .NET SDK (dotnet) not found on PATH."
+  echo "Install from https://dotnet.microsoft.com/download and re-run this script."
+else
+  echo "dotnet version: $(dotnet --version)"
+fi
+# --- end added ---
